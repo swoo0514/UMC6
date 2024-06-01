@@ -55,6 +55,12 @@ export const status = {
     code: 'MEMBER4002',
     message: '닉네임은 필수입니다.',
   },
+  EMAIL_ALREADY_EXIST: {
+    status: StatusCodes.BAD_REQUEST,
+    isSuccess: false,
+    code: 'MEMBER4003',
+    message: '중복된 이메일입니다.',
+  },
 
   // article err
   ARTICLE_NOT_FOUND: {
