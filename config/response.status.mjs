@@ -41,6 +41,12 @@ export const status = {
     code: 'COMMON004',
     message: '금지된 요청입니다.',
   },
+  PARAMETER_IS_WRONG: {
+    status: StatusCodes.PARAMETER_IS_WRONG,
+    isSuccess: false,
+    code: 'COMMON005',
+    message: '잘못된 인자입니다.',
+  },
 
   // member err
   MEMBER_NOT_FOUND: {

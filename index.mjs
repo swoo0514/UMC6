@@ -1,10 +1,13 @@
 import express from 'express';
+import SwaggerUi from 'swagger-ui-express';
+import cors from 'cors';
+import dotenv from 'dotenv';
 import { status } from './config/response.status.mjs';
 import { tempRouter } from './src/routes/temp.route.mjs';
 import { userRouter } from './src/routes/user.route.mjs';
 import { response } from './config/response.mjs';
-import cors from 'cors';
-import dotenv from 'dotenv';
+import { specs } from './config/swagger.config.mjs';
+
 dotenv.config();
 
 const app = express();
@@ -14,6 +17,8 @@ app.use(cors());
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 // router setting
 app.use('/temp', tempRouter);
 app.use('/user', userRouter);
