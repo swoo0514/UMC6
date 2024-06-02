@@ -5,6 +5,9 @@ import dotenv from 'dotenv';
 import { status } from './config/response.status.mjs';
 import { tempRouter } from './src/routes/temp.route.mjs';
 import { userRouter } from './src/routes/user.route.mjs';
+import { mypageRouter } from './src/routes/mypage.route.mjs';
+import { missionRouter } from './src/routes/mission.route.mjs';
+import { storeRouter } from './src/routes/store.route.mjs';
 import { response } from './config/response.mjs';
 import { specs } from './config/swagger.config.mjs';
 
@@ -22,6 +25,9 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 // router setting
 app.use('/temp', tempRouter);
 app.use('/user', userRouter);
+app.use('/mypage', mypageRouter);
+app.use('/mission', missionRouter);
+app.use('/store', storeRouter);
 
 app.use((err, req, res, next) => {
   // 템플릿 엔진 변수 설정
