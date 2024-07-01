@@ -41,6 +41,12 @@ export const status = {
     code: 'COMMON004',
     message: '금지된 요청입니다.',
   },
+  PARAMETER_IS_WRONG: {
+    status: StatusCodes.PARAMETER_IS_WRONG,
+    isSuccess: false,
+    code: 'COMMON005',
+    message: '잘못된 인자입니다.',
+  },
 
   // member err
   MEMBER_NOT_FOUND: {
@@ -54,6 +60,12 @@ export const status = {
     isSuccess: false,
     code: 'MEMBER4002',
     message: '닉네임은 필수입니다.',
+  },
+  EMAIL_ALREADY_EXIST: {
+    status: StatusCodes.BAD_REQUEST,
+    isSuccess: false,
+    code: 'MEMBER4003',
+    message: '중복된 이메일입니다.',
   },
 
   // article err

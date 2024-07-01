@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: Mission Challenge API
+  version: 1.0.0
+  description: API to add a mission to the ongoing challenges for a store.
+paths:
+  /mission/challenge/{missionId}:
+    post:
+      tags:
+        - Missions
+      summary: Add a mission to the ongoing challenges for a store
+      parameters:
+        - name: storeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 3
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  example: 10
+                mission_id:
+                  type: integer
+                  example: 3
+                status:
+                  type: string
+                  example: ongoing
+      responses:
+        200:
+          description: Mission successfully challenged
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  isSuccess:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 2000
+                  message:
+                    type: string
+                    example: Mission successfully challenged.
+                  data:
+                    type: object
+                    properties:
+                      challenge_id:
+                        type: integer
+                        example: 1
+                      user_id:
+                        type: integer
+                        example: 1
+                      store_id:
+                        type: integer
+                        example: 101
+                      mission_id:
+                        type: integer
+                        example: 202
+                      status:
+                        type: string
+                        example: ongoing
+        400:
+          description: The mission is already being challenged
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: string
+                    example: MISSION_ALREADY_CHALLENGED
+                  message:
+                    type: string
+                    example: The mission is already being challenged.
+        500:
+          description: An unexpected error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: string
+                    example: SERVER_ERROR
+                  message:
+                    type: string
+                    example: An unexpected error occurred.

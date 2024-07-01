@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Mission API
+  version: 1.0.0
+  description: API to add missions to a store.
+paths:
+  /store/{storeId}/missions:
+    post:
+      tags:
+        - Missions
+      summary: Add a mission to a store
+      parameters:
+        - name: storeId
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reward:
+                  type: integer
+                  example: 500
+                deadline:
+                  type: string
+                  format: date-time
+                  example: '2024-12-31T23:59:59'
+                mission_spec:
+                  type: string
+                  example: '10,000원 이상 주문하세요'
+      responses:
+        200:
+          description: Mission successfully added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  isSuccess:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 2000
+                  message:
+                    type: string
+                    example: Mission successfully added.
+                  data:
+                    type: object
+                    properties:
+                      mission_id:
+                        type: integer
+                        example: 1
+                      store_id:
+                        type: integer
+                        example: 101
+                      reward:
+                        type: integer
+                        example: 100
+                      deadline:
+                        type: string
+                        format: date-time
+                        example: '2024-12-31T23:59:59'
+                      mission_spec:
+                        type: string
+                        example: Complete 10 sales in a week.
+        400:
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: string
+                    example: INVALID_REQUEST
+                  message:
+                    type: string
+                    example: Invalid request parameters.
+        500:
+          description: An unexpected error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: string
+                    example: SERVER_ERROR
+                  message:
+                    type: string
+                    example: An unexpected error occurred.
