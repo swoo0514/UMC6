@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   context: __dirname + '/src',
   entry: {
-    app: '../index.js',
+    app: '../index.mjs',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
