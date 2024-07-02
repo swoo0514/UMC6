@@ -28,6 +28,17 @@ app.use('/user', userRouter);
 app.use('/mypage', mypageRouter);
 app.use('/mission', missionRouter);
 app.use('/store', storeRouter);
+app.use('/health', healthRoute);
+
+app.get('/', (req, res, next) => {
+  res.send(response(status.SUCCESS, '루트 페이지!'));
+});
+
+// error handling
+app.use((req, res, next) => {
+  const err = new BaseError(status.NOT_FOUND);
+  next(err);
+});
 
 app.use((err, req, res, next) => {
   // 템플릿 엔진 변수 설정
